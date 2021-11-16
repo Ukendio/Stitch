@@ -24,7 +24,7 @@ export class World {
 
 	public addComponent<T extends ComponentDefinition>(
 		componentResolvable: ComponentResolvable,
-		entity: Instance | Entity<never>,
+		entity: Instance | Entity<Array<unknown>>,
 		data?: T["defaults"],
 	): T;
 

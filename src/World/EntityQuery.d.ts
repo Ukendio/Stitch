@@ -1,13 +1,11 @@
 import { Entity } from ".";
 import { ComponentDefinition } from "./ComponentDefinition";
 
-type ExcludeInArr<Arr extends Array<unknown>[number], T> = Arr extends []
-	? Arr
-	: Arr extends [infer First, ...infer Back]
-	? First extends T
-		? ExcludeInArr<Back, T>
-		: [First, ...ExcludeInArr<Back, T>]
-	: never;
+type FilterOut<T extends Array<unknown>, F> = T extends [infer L, ...infer R]
+	? [L] extends [F]
+		? [...FilterOut<R, F>]
+		: [L, ...FilterOut<R, F>]
+	: [];
 
 type Iterate<A extends Array<ComponentDefinition>> = A extends []
 	? A
@@ -22,9 +20,9 @@ type Iterate<A extends Array<ComponentDefinition>> = A extends []
 export class EntityQuery<a extends Array<ComponentDefinition>> {
 	public all<q extends Array<ComponentDefinition>>(...components: q | Array<string>): EntityQuery<Iterate<q>>;
 
-	public except<e extends Array<a[number]>>(
+	public except<e extends Array<ComponentDefinition>>(
 		...components: e | Array<string>
-	): EntityQuery<ExcludeInArr<a, e[number]>>;
+	): EntityQuery<FilterOut<a, e[number]>>;
 
 	public get(): Array<Entity<a>>;
 
