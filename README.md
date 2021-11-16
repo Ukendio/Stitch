@@ -58,7 +58,7 @@ npm install @rbxts/rbxts-pattern
 
 - [API Reference](#api-reference)
   - [`world`](#world)
-	- [`new](#new)
+	- [`new`](#new)
 	- [`.addComponent`](#.addComponent)
 	- [`.createQuery`](#.createQuery)
 	- [`.destroy`](#.destroy)
