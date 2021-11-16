@@ -1,13 +1,10 @@
-import { Entity } from "World";
-
-export type Component = defined;
-export interface ComponentDefinition<T extends Component> {
+export interface ComponentDefinition {
 	name?: string;
-	defaults?: T;
-	validator: (data: T) => data is T;
+	defaults?: unknown;
+	validator?: (data: unknown) => data is this["defaults"];
 	tag?: boolean | string;
 	replicate?: boolean;
-	destructor?: (a: Entity<[T]>, data: T) => void;
+	destructor?: Callback;
 }
 
-export type ComponentResolvable = ModuleScript | ComponentDefinition<Component> | string;
+export type ComponentResolvable = ModuleScript | ComponentDefinition | string;
