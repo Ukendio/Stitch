@@ -1,10 +1,13 @@
-import { t } from "@rbxts/t";
+import { Entity } from "World";
 
 export type Component = defined;
 export interface ComponentDefinition<T extends Component> {
 	name?: string;
 	defaults?: T;
-	validators?: t.static<T>;
-	destructor?: (a: never, data: T) => void;
+	validator: (data: T) => data is T;
+	tag?: boolean | string;
+	replicate?: boolean;
+	destructor?: (a: Entity<[T]>, data: T) => void;
 }
+
 export type ComponentResolvable = ModuleScript | ComponentDefinition<Component> | string;
