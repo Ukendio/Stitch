@@ -1,4 +1,4 @@
-<h1 align="center">`@rbxts/stitch`</h1>
+<h1 align="center">@rbxts/stitch</h1>
 
 <p align="center">
 A roblox-ts package for @sayhisam's [Stitch](https://github.com/sayhisam1/Stitch). All credits to the author.
