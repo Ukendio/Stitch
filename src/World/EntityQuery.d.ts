@@ -1,4 +1,5 @@
-import { Component, Entity, World } from "World";
+import { Entity, World } from ".";
+import { Component } from "./ComponentDefinition";
 
 type ExcludeInArr<Arr extends Array<unknown>[number], T> = Arr extends []
 	? Arr
