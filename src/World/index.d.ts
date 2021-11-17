@@ -24,31 +24,33 @@ export class World {
 
 	public addComponent<T extends ComponentDefinition>(
 		componentResolvable: ComponentResolvable,
-		entity: Instance | Entity<Array<unknown>>,
-		data?: T["defaults"],
-	): T;
+		entity: Instance | Entity<[Data<T>]>,
+		data?: Data<T>,
+	): Data<T>;
 
 	public getComponent<T extends ComponentDefinition>(
 		componentResolvable: ComponentResolvable,
-		entity: Entity<T>,
-	): T["defaults"] | undefined;
+		entity: Entity<[Data<T>]>,
+	): Data<T> | undefined;
 
-	public getEntitiesWith<T extends ComponentDefinition>(componentResolvable: ComponentResolvable): Array<Entity<T>>;
+	public getEntitiesWith<T extends ComponentDefinition>(
+		componentResolvable: ComponentResolvable,
+	): Array<Entity<[Data<T>]>>;
 
 	public setComponent<T extends ComponentDefinition>(
 		componentResolvable: ComponentResolvable,
-		entity: Instance | Entity<[T]>,
-		data: T["defaults"],
-	): T["defaults"];
+		entity: Instance | Entity<[Data<T>]>,
+		data: Data<T>,
+	): Data<T>;
 
 	public updateComponent<T extends ComponentDefinition>(
 		componentResolvable: ComponentResolvable,
-		entity: Instance | Entity<[T]>,
-		data: T,
-	): T;
+		entity: Instance | Entity<[Data<T>]>,
+		data: Data<T>,
+	): Data<T>;
 
 	public removeComponent<T extends ComponentDefinition>(
 		componentResolvable: ComponentResolvable,
-		entity: Instance | Entity<[T]>,
+		entity: Instance | Entity<[Data<T>]>,
 	): void;
 }

@@ -78,70 +78,91 @@ npm install @rbxts/rbxts-pattern
 The World class is a collection of entities, components, and systems. It is the central class that ties all other parts of an ECS together. A game could have many worlds, but normally there is only one world per game.
 
 ### `new`
-```ts
-new World("name")
-```
-
-Creates a new World.
-
-#### Signature
 
 ```ts
 class World(namespace: string)
 ```
 
-#### Arguments
-
-- `namespace`
-  - **Optional**
-  - the name of the world, defaults to `Game`
-
 ### `.addComponent`
-
-#### Signature
 
 ```ts
 function addComponent<T extends ComponentDefinition>(
 	componentResolvable: ComponentResolvable,
 	entity: Instance | Entity<Array<unknown>>
-	data?: T["defaults]
-): T
+	data?: Data<T>
+): Data<T>
 ```
-
-#### Arguments
-
-- `componentResolvable`
-  - **Required**
-  - gives three different ways to resolve a component
-- `entity`
-  - **Required**
-  - an entity is an unique identifier associated with a tuple of components. Commonly you set it to an instance
-- `data`
-  - **Optional**
-  - this field is used to set the component's data
-
-### `.addSystem`
-
 ### `.createQuery`
+
+```ts
+function createQuery(): EntityQuery<never>;
+```
 
 ### `.destroy`
 
+```ts
+function destroy(): void
+```
+
 ### `.getComponent`
+
+```ts
+function getComponent<T extends ComponentDefinition>(
+	componentResolvable: ComponentResolvable,
+	entity: Entity<[Data<T>]>,
+): Data<T> | undefined;
+```
 
 ### `.getEntitiesWith`
 
+```ts
+function getEntitiesWith<T extends ComponentDefinition>(
+	componentResolvable: ComponentResolvable,
+): Array<Entity<[Data<T>]>>;
+```
+
 ### `.registerComponent`
+
+```ts
+function registerComponent(componentDefinition: ComponentDefinition): void
+```
 
 ### `.removeComponent`
 
+```ts
+function registerComponent(componentDefinition: ComponentDefinition): void;
+```
+
 ### `.removeSystem`
+
+```ts
+function removeSystem(systemResolvable: SystemResolvable): void;
+```
 
 ### `.setComponent`
 
+```ts
+function setComponent<T extends ComponentDefinition>(
+	componentResolvable: ComponentResolvable,
+	entity: Instance | Entity<[Data<T>]>,
+	data: Data<T>,
+): Data<T>;
+```
 ### `.unregisterComponent`
+
+```ts
+function unregisterComponent(componentResolvable: ComponentResolvable): void;
+```
 
 ### `.updateComponent`
 
+```ts
+function updateComponent<T extends ComponentDefinition>(
+	componentResolvable: ComponentResolvable,
+	entity: Instance | Entity<[Data<T>]>,
+	data: Data<T>,
+): Data<T>;
+```
 
 ## Open Sourced Example
 
