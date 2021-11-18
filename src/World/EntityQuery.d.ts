@@ -1,4 +1,4 @@
-import { Entity } from ".";
+import { Data, Entity } from ".";
 import { ComponentDefinition } from "./ComponentDefinition";
 
 type FilterOut<T extends Array<unknown>, F> = T extends [infer L, ...infer R]

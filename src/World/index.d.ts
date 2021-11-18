@@ -7,6 +7,8 @@ export type Entity<T extends ComponentDefinition["defaults"] | Array<ComponentDe
 	| (Instance & T)
 	| defined;
 
+export type Data<T extends { defaults?: unknown }> = T["defaults"];
+
 export class World {
 	public constructor(namespace: string);
 
